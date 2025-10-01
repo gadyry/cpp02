@@ -53,4 +53,6 @@ public :
     float   toFloat( void ) const;
 };
 
+std::ostreampdw& operator<<(std::ostream &os, const Fixed &f);
+
 #endif
