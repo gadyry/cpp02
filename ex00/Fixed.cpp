@@ -8,7 +8,7 @@ Fixed::Fixed() : rawBits(0)
 Fixed::Fixed(const Fixed& other)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	this->rawBits = other.rawBits;
+	this->rawBits = other.getRawBits();
 
 	/* We can do this : if copy assignement is already implemented !!
 		*this = other;
