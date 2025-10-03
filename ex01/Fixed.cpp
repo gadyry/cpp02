@@ -18,9 +18,14 @@ Fixed::Fixed(const int float)
 }
 
 
-Fixed::Fixed(const Fixed& other) {
+Fixed::Fixed(const Fixed& other)
+{
 	std::cout << "Copy constructor called" << std::endl;
-	*this = other;
+	this->rawBits = other.rawBits;
+
+	/* Also We can do this instruction : if copy assignement is already implemented !!
+		*this = other;
+	*/
 }
 
 Fixed& Fixed::operator=(const Fixed& other)

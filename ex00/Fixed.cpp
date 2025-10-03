@@ -5,9 +5,14 @@ Fixed::Fixed() : rawBits(0)
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& other) {
+Fixed::Fixed(const Fixed& other)
+{
 	std::cout << "Copy constructor called" << std::endl;
-	*this = other;
+	this->rawBits = other.rawBits;
+
+	/* We can do this : if copy assignement is already implemented !!
+		*this = other;
+	*/
 }
 
 Fixed& Fixed::operator=(const Fixed& other)
