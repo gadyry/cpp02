@@ -1,5 +1,7 @@
 #include "Fixed.hpp"
 
+const int Fixed::fractionalBits = 8;
+
 Fixed::Fixed() : rawBits(0)
 {
 	std::cout << "Default constructor called" << std::endl;
@@ -8,13 +10,13 @@ Fixed::Fixed() : rawBits(0)
 Fixed::Fixed(const int nbr)
 {
 	std::cout << "Integer constructor called" << std::endl;
-    this->rawBits = nbr << this->fractionalBits;
+	this->rawBits = nbr << this->fractionalBits;// 2⁸ = 256
 }
 
 Fixed::Fixed(const int float)
 {
-    std::cout << "Float constructor called" << std::endl;
-    this->rawBits = roundf(nbr * (1 << this->fractionalBits));
+	std::cout << "Float constructor called" << std::endl;
+	this->rawBits = roundf(nbr * (1 << this->fractionalBits));
 }
 
 

@@ -1,3 +1,4 @@
+
 /*
 
 +----------------------------------+
@@ -20,7 +21,6 @@
 | + operator<<(os : ostream&, f : Fixed&) : ostream& (friend) |
 +----------------------------------+
 
-
 */
 
 #ifndef FIXED_HPP
@@ -33,24 +33,24 @@ class Fixed
 {
 private :
 
-    int rawBits;
-    static const int fractionBits = 8;
+	int rawBits;
+	static const int fractionBits;
 
 public :
 
-    Fixed(); // constractor 
-    Fixed(const int nbr);
-    Fixed(const float nbr);
-    Fixed( const Fixed &other); // copy constractor
-    Fixed& operator=(const Fixed& other);
-    ~Fixed(); // Destructor
+	Fixed(); // constractor
+	Fixed(const int nbr);
+	Fixed(const float nbr);
+	Fixed( const Fixed &other); // copy constractor
+	Fixed& operator=(const Fixed& other);
+	~Fixed(); // Destructor
 
-    //Methods :
-    int getRawBits(void) const;
-    void setRawBits(int const raw);
+	//Methods :
+	int getRawBits(void) const;
+	void setRawBits(int const raw);
 
-    int toInt( void ) const;
-    float   toFloat( void ) const;
+	int toInt( void ) const;
+	float   toFloat( void ) const;
 };
 
 std::ostreampdw& operator<<(std::ostream &os, const Fixed &f);
