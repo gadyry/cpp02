@@ -53,3 +53,20 @@ void Fixed::setRawBits(int const raw)
 {
 	this->rawBits = raw;
 }
+
+
+int	Fixed::toInt( void ) const
+{
+	return (this->rawBits >> this->fractionBits);
+}
+
+float	Fixed::toFloat( void ) const
+{
+	return ((float)(rawBits) / (1 << fractionBits));
+}
+
+std::ostream& operator<<(std::ostream &os, const Fixed &f)
+{
+	os << f.toFloat();
+	return (os);
+}

@@ -29,7 +29,7 @@
 #include <iostream>
 #include <cmath>
 
-class Fixed 
+class Fixed
 {
 private :
 
@@ -49,8 +49,8 @@ public :
 	int getRawBits(void) const;
 	void setRawBits(int const raw);
 
-	int toInt( void ) const;
-	float   toFloat( void ) const;
+	int	toInt( void ) const;
+	float	toFloat( void ) const;
 };
 
 std::ostream& operator<<(std::ostream &os, const Fixed &f);
