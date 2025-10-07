@@ -75,7 +75,8 @@ public:
 	Counter(int v = 0) : value(v) {}
 
 	// Prefix increment (++obj)
-	Counter& operator++() {
+	Counter& operator++()
+	{
 		++value;
 		return *this;
 	}
