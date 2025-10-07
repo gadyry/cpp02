@@ -1,11 +1,11 @@
 
 /*
-
+	Class Diag of ex01 :
 +----------------------------------+
 |              Fixed              |
 +----------------------------------+
-| - _rawBits : int                |
-| - _fractionalBits : const int = 8 (static) |
+| - rawBits : int                |
+| - fractionBits : const int = 8 (static) |
 +----------------------------------+
 | + Fixed()                       |
 | + Fixed(const int n)            |
