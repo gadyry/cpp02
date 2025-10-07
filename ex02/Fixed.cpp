@@ -143,20 +143,50 @@ Fixed	Fixed::operator/(const Fixed &other) const
 
 Fixed&	Fixed::operator++()    // Pre-increment
 {
-	
+	this->rawBits++;
+	return (*this);
 }
 
 Fixed	Fixed::operator++(int) // Post-increment
 {
+	Fixed	tmp = *this;
 
+	this->rawBits++;
+	return (tmp);
 }
 
 Fixed&	Fixed::operator--()    // Pre-decrement
 {
-
+	this->rawBits--;
+	return (*this);
 }
 
 Fixed	Fixed::operator--(int) // Post-decrement
+{
+	Fixed	tmp = *this;
+
+	this->rawBits--;
+	return (tmp);
+}
+
+// Static min/max functions :
+
+Fixed&		Fixed::min(Fixed &a, Fixed &b)
+{
+
+}
+
+const Fixed&	Fixed::min(const Fixed &a, const Fixed &b)
+{
+
+}
+
+Fixed&		Fixed::max(Fixed &a, Fixed &b)
+{
+
+}
+
+const Fixed&	Fixed::max(const Fixed &a, const Fixed &b)
 {
 
 }
