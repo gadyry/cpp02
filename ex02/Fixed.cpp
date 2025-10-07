@@ -52,6 +52,7 @@ void Fixed::setRawBits(int const raw)
 	this->rawBits = raw;
 }
 
+// Conversion functions : 
 
 int	Fixed::toInt( void ) const
 {
@@ -62,6 +63,105 @@ float	Fixed::toFloat( void ) const
 {
 	return ((float)(rawBits) / (1 << fractionBits));
 }
+
+// Comparison operators :
+
+bool	Fixed::operator>(const Fixed &other) const
+{
+	return (this->rawBits > other.rawBits);
+}
+
+bool	Fixed::operator<(const Fixed &other) const
+{
+	return (this->rawBits < other.rawBits);
+}
+
+bool	Fixed::operator>=(const Fixed &other) const
+{
+	return (this->rawBits >= other.rawBits);
+}
+
+bool	Fixed::operator<=(const Fixed &other) const
+{
+	return (this->rawBits <= other.rawBits);
+}
+
+bool	Fixed::operator==(const Fixed &other) const
+{
+	return (this->rawBits == other.rawBits);
+}
+
+bool	Fixed::operator!=(const Fixed &other) const
+{
+	return (this->rawBits != other.rawBits);
+}
+
+// Arithmetic operators :
+
+Fixed	Fixed::operator+(const Fixed &other) const
+{
+	Fixed	fixed;
+
+	fixed.rawBits = this->rawBits + other.rawBits;
+	return (fixed);
+}
+
+Fixed	Fixed::operator-(const Fixed &other) const
+{
+	Fixed	fixed;
+
+	fixed.rawBits = this->rawBits - other.rawBits;
+	return (fixed);
+}
+
+Fixed	Fixed::operator*(const Fixed &other) const
+{
+	Fixed	fixed;
+
+	/*
+		Each rawBits is already scaled by 2^fractionBits.
+		So rawBits * rawBits is scaled by 2^(2*fractionBits).
+		We must divide by 2^fractionBits once to fix the scale.
+	*/
+	fixed.rawBits = (this->rawBits * other.rawBits) >> this->fractionBits;
+	return (fixed);
+}
+
+Fixed	Fixed::operator/(const Fixed &other) const
+{
+	Fixed	fixed;
+
+	if (other.rawBits != 0)
+		fixed.rawBits = this->rawBits / other.rawBits;
+	else
+		std::cerr << "Error: division by zero" << std::endl;
+
+	return (fixed);
+}
+
+// Increment / Decrement operators :
+
+Fixed&	Fixed::operator++()    // Pre-increment
+{
+	
+}
+
+Fixed	Fixed::operator++(int) // Post-increment
+{
+
+}
+
+Fixed&	Fixed::operator--()    // Pre-decrement
+{
+
+}
+
+Fixed	Fixed::operator--(int) // Post-decrement
+{
+
+}
+
+
 
 std::ostream& operator<<(std::ostream &os, const Fixed &f)
 {
