@@ -2,48 +2,35 @@
 
 const int Fixed::fractionBits = 8;
 
-Fixed::Fixed() : rawBits(0)
-{
-	std::cout << "Default constructor called" << std::endl;
-}
+Fixed::Fixed() : rawBits(0) {}
 
 Fixed::Fixed(const int nbr)
 {
-	std::cout << "Integer constructor called" << std::endl;
 	this->rawBits = nbr << this->fractionBits;// 2⁸ = 256
 }
 
 Fixed::Fixed(const float nbr)
 {
-	std::cout << "Float constructor called" << std::endl;
 	this->rawBits = roundf(nbr * (1 << this->fractionBits));
 }
 
 
 Fixed::Fixed(const Fixed& other)
 {
-	std::cout << "Copy constructor called" << std::endl;
-
 	// this->rawBits = other.rawBits;
 	*this = other;
 }
 
 Fixed& Fixed::operator=(const Fixed& other)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
-
 	this->rawBits = other.rawBits;
 	return (*this);
 }
 
-Fixed::~Fixed()
-{
-	std::cout << "Destructor called" << std::endl;
-}
+Fixed::~Fixed() {}
 
 int Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
 	return (this->rawBits);
 }
 
@@ -100,43 +87,27 @@ bool	Fixed::operator!=(const Fixed &other) const
 
 Fixed	Fixed::operator+(const Fixed &other) const
 {
-	Fixed	fixed;
-
-	fixed.rawBits = this->rawBits + other.rawBits;
-	return (fixed);
+	return Fixed(this->toFloat() + other.toFloat());
 }
 
 Fixed	Fixed::operator-(const Fixed &other) const
 {
-	Fixed	fixed;
-
-	fixed.rawBits = this->rawBits - other.rawBits;
-	return (fixed);
+	return Fixed(this->toFloat() - other.toFloat());
 }
 
 Fixed	Fixed::operator*(const Fixed &other) const
 {
-	Fixed	fixed;
-
-	/*
-		Each rawBits is already scaled by 2^fractionBits.
-		So rawBits * rawBits is scaled by 2^(2*fractionBits).
-		We must divide by 2^fractionBits once to fix the scale.
-	*/
-	fixed.rawBits = (this->rawBits * other.rawBits) >> this->fractionBits;
-	return (fixed);
+	return Fixed(this->toFloat() * other.toFloat());
 }
 
 Fixed	Fixed::operator/(const Fixed &other) const
 {
-	Fixed	fixed;
-
-	if (other.rawBits != 0)
-		fixed.rawBits = this->rawBits / other.rawBits;
-	else
-		std::cerr << "Error: division by zero" << std::endl;
-
-	return (fixed);
+    if (other.toFloat() == 0)
+    {
+        std::cerr << "Error: division by zero" << std::endl;
+        return Fixed(0);
+    }
+    return Fixed(this->toFloat() / other.toFloat());
 }
 
 // Increment / Decrement operators :
