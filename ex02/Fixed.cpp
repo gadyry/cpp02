@@ -98,45 +98,31 @@ bool	Fixed::operator!=(const Fixed &other) const
 
 // Arithmetic operators :
 
+// Arithmetic operators :
+
 Fixed	Fixed::operator+(const Fixed &other) const
 {
-	Fixed	fixed;
-
-	fixed.rawBits = this->rawBits + other.rawBits;
-	return (fixed);
+	return Fixed(this->toFloat() + other.toFloat());
 }
 
 Fixed	Fixed::operator-(const Fixed &other) const
 {
-	Fixed	fixed;
-
-	fixed.rawBits = this->rawBits - other.rawBits;
-	return (fixed);
+	return Fixed(this->toFloat() - other.toFloat());
 }
 
 Fixed	Fixed::operator*(const Fixed &other) const
 {
-	Fixed	fixed;
-
-	/*
-		Each rawBits is already scaled by 2^fractionBits.
-		So rawBits * rawBits is scaled by 2^(2*fractionBits).
-		We must divide by 2^fractionBits once to fix the scale.
-	*/
-	fixed.rawBits = (this->rawBits * other.rawBits) >> this->fractionBits;
-	return (fixed);
+	return Fixed(this->toFloat() * other.toFloat());
 }
 
 Fixed	Fixed::operator/(const Fixed &other) const
 {
-	Fixed	fixed;
-
-	if (other.rawBits != 0)
-		fixed.rawBits = this->rawBits / other.rawBits;
-	else
-		std::cerr << "Error: division by zero" << std::endl;
-
-	return (fixed);
+    if (other.toFloat() == 0)
+    {
+        std::cerr << "Error: division by zero" << std::endl;
+        return Fixed(0);
+    }
+    return Fixed(this->toFloat() / other.toFloat());
 }
 
 // Increment / Decrement operators :
