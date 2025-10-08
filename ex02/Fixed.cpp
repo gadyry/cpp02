@@ -98,8 +98,6 @@ bool	Fixed::operator!=(const Fixed &other) const
 
 // Arithmetic operators :
 
-// Arithmetic operators :
-
 Fixed	Fixed::operator+(const Fixed &other) const
 {
 	return Fixed(this->toFloat() + other.toFloat());
