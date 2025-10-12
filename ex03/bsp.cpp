@@ -25,7 +25,7 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
 	Fixed	ABC = triangleArea(a, b, c);
 	Fixed	PBC = triangleArea(point, b, c);
 	Fixed	APC = triangleArea(a, point, c);
-	Fixed	ABP = triangleArea(a, b, point); 
+	Fixed	ABP = triangleArea(a, b, point);
 
 	Fixed	omega(0.0001f);
 	Fixed sum;
